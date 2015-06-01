@@ -10,6 +10,10 @@ public class BoggleManager {
 	private static BoggleManager _instance;
 
 	private List<BoggleCase> _boggleCases;
+	
+	private int _nbLine;
+	
+	private int _nbCol;
 
 	private BoggleManager() {
 
@@ -28,6 +32,10 @@ public class BoggleManager {
 
 	public void init(int heigth, int width) {
 
+		
+		_nbLine = heigth;
+		_nbCol = width;
+		
 		// création de la liste finale
 		_boggleCases = new ArrayList<BoggleCase>();
 
@@ -94,6 +102,16 @@ public class BoggleManager {
 			}
 		}
 
+	}
+
+	public int getNbLine() {
+		
+		return _nbLine;
+	}
+
+	public int getNbCol() {
+		
+		return _nbCol;
 	}
 
 }

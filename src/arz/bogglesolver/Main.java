@@ -1,12 +1,24 @@
 package arz.bogglesolver;
 
+import arz.bogglesolver.application.BoggleManager;
+import arz.bogglesolver.presentation.ConfigFrame;
+import arz.bogglesolver.presentation.MainFrame;
+
 public class Main {
 
 	public static void main(String[] args) {
 		
 		
-
-		System.out.println("Cinquième version de la classe");
+		
+		
+		ConfigFrame cf = new ConfigFrame();
+		cf.setVisible(true);
+		
+		BoggleManager.getInstance().init(cf.getNbLine(),cf.getNbCol());
+		
+		MainFrame mf = new MainFrame();
+		mf.setVisible(true);
+		
 
 
 	}

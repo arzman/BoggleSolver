@@ -1,18 +1,39 @@
 package arz.bogglesolver.presentation;
 
 import javax.swing.JFrame;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JPanel;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.border.TitledBorder;
+
 import java.awt.Insets;
+
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 
+import arz.bogglesolver.application.BoggleManager;
+import arz.bogglesolver.domain.BoggleCase;
+
+import java.awt.Color;
+
 public class MainFrame extends JFrame {
-	public MainFrame() {
+	
+	
+	
+	
+	
+	public MainFrame(){
+		
+		
 		setTitle("Boggle Solver");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 100};
 		gridBagLayout.rowHeights = new int[] {0, 0};
@@ -28,6 +49,45 @@ public class MainFrame extends JFrame {
 		gbc_gridPanel.gridx = 0;
 		gbc_gridPanel.gridy = 0;
 		getContentPane().add(gridPanel, gbc_gridPanel);
+		GridBagLayout gbl_gridPanel = new GridBagLayout();
+		gbl_gridPanel.columnWidths = new int[]{0, 0};
+		gbl_gridPanel.rowHeights = new int[]{0, 0};
+		gbl_gridPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_gridPanel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		gridPanel.setLayout(gbl_gridPanel);
+		
+		JPanel grid = new JPanel();
+		grid.setBackground(Color.DARK_GRAY);
+		GridBagConstraints gbc_grid = new GridBagConstraints();
+		gbc_grid.insets = new Insets(2, 2, 2, 2);
+		gbc_grid.fill = GridBagConstraints.BOTH;
+		gbc_grid.gridx = 0;
+		gbc_grid.gridy = 0;
+		gridPanel.add(grid, gbc_grid);
+		GridBagLayout gbl_grid = new GridBagLayout();
+		grid.setLayout(gbl_grid);
+		
+		for(int i=0;i<BoggleManager.getInstance().getNbLine();i++){
+			
+			for(int j=0;j<BoggleManager.getInstance().getNbCol();j++){
+				
+				
+				BoggleCaseUI cUi = new BoggleCaseUI();
+				
+				GridBagConstraints gbc = new GridBagConstraints();
+				gbc.insets = new Insets(2, 2, 2, 2);
+				gbc.fill = GridBagConstraints.BOTH;
+				gbc.gridx = i;
+				gbc.gridy = j;
+				gbc.weightx = 1.0;
+				gbc.weighty = 1.0;
+				grid.add(cUi, gbc);
+				
+			}
+			
+			
+		}
+		
 		
 		JPanel controlPanel = new JPanel();
 		controlPanel.setBorder(new TitledBorder(null, "Control", TitledBorder.LEADING, TitledBorder.TOP, null, null));
