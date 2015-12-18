@@ -2,6 +2,7 @@ package arz.bogglesolver.application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import arz.bogglesolver.domain.BoggleCase;
 
@@ -60,57 +61,101 @@ public class BoggleManager {
 			for (int j = 0; j < width; j++) {
 
 				BoggleCase cible = tmpTable[i][j];
-				
-				//ligne du dessus
-				if(i-1>-1){
-					
-					if(j-1>-1){
-						cible.getNextCases().add(tmpTable[i-1][j-1]);
+
+				// ligne du dessus
+				if (i - 1 > -1) {
+
+					if (j - 1 > -1) {
+						cible.getNextCases().add(tmpTable[i - 1][j - 1]);
 					}
-					
-					cible.getNextCases().add(tmpTable[i-1][j]);
-					
-					if(j+1<width){
-						cible.getNextCases().add(tmpTable[i-1][j+1]);
+
+					cible.getNextCases().add(tmpTable[i - 1][j]);
+
+					if (j + 1 < width) {
+						cible.getNextCases().add(tmpTable[i - 1][j + 1]);
 					}
-					
+
 				}
 				// ligne courante
-				if(j-1>-1){
-					cible.getNextCases().add(tmpTable[i][j-1]);
+				if (j - 1 > -1) {
+					cible.getNextCases().add(tmpTable[i][j - 1]);
 				}
-				
-				
-				if(j+1<width){
-					cible.getNextCases().add(tmpTable[i][j+1]);
+
+				if (j + 1 < width) {
+					cible.getNextCases().add(tmpTable[i][j + 1]);
 				}
-				
-				//ligne du dessous
-				if(i+1<heigth){
-					if(j-1>-1){
-						cible.getNextCases().add(tmpTable[i+1][j-1]);
+
+				// ligne du dessous
+				if (i + 1 < heigth) {
+					if (j - 1 > -1) {
+						cible.getNextCases().add(tmpTable[i + 1][j - 1]);
 					}
-					
-					cible.getNextCases().add(tmpTable[i+1][j]);
-					
-					if(j+1<width){
-						cible.getNextCases().add(tmpTable[i+1][j+1]);
+
+					cible.getNextCases().add(tmpTable[i + 1][j]);
+
+					if (j + 1 < width) {
+						cible.getNextCases().add(tmpTable[i + 1][j + 1]);
 					}
 				}
-			
-				
+
 			}
 		}
 
 	}
 
-	public int getNbLine() {
+	public List<String> resolveBoggle(Character[][] table) {
+
+		ArrayList<String> res = new ArrayList<>();
+
+		// remplissage de la structure du boggle
+		int k = 0;
+		for (int i = 0; i < table.length; i++) {
+
+			for (int j = 0; j < table[i].length; j++) {
+
+				_boggleCases.get(k).setChar(table[i][j]);
+				k = k + 1;
+			}
+		}
+
+		Stack<List<BoggleCase>> zeStack = new Stack<List<BoggleCase>>();
+
+		for (BoggleCase bCase : _boggleCases) {
+
+			ArrayList<BoggleCase> list = new ArrayList<BoggleCase>();
+			list.add(bCase);
+			zeStack.push(list);
+
+		}
 		
+		
+		while(!zeStack.isEmpty()){
+			
+			int resword = WordManager.getInstance().analyseWord(convertToString(zeStack.pop()));
+			
+			if(resword == WordManager.MOT){
+				
+			}
+			
+			
+		}
+		
+
+		return res;
+	}
+
+	private String convertToString(List<BoggleCase> listCase) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getNbLine() {
+
 		return _nbLine;
 	}
 
 	public int getNbCol() {
-		
+
 		return _nbCol;
 	}
 

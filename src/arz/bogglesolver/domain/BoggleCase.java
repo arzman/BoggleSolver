@@ -6,6 +6,8 @@ import java.util.List;
 public class BoggleCase {
 
 	private final ArrayList<BoggleCase> _nextCases;
+	
+	private char _character;
 
 
 	public BoggleCase() {
@@ -21,6 +23,20 @@ public class BoggleCase {
 		return _nextCases;
 		
 	}
+
+
+
+	public void setChar(Character character) {
+		
+		_character = character;
+		
+	}
+	
+	
+	public char getChar(){
+		return _character;
+	}
+	
 	
 
 }
