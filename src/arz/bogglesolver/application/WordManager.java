@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-import javax.print.attribute.standard.Finishings;
-
 public class WordManager {
 
 	public static final int RIEN = 0;

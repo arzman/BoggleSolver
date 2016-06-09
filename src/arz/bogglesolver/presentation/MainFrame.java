@@ -1,25 +1,16 @@
 package arz.bogglesolver.presentation;
 
-import javax.swing.JFrame;
-
-import java.awt.GridBagLayout;
-
-import javax.swing.JPanel;
-
+import java.awt.Color;
 import java.awt.GridBagConstraints;
-
-import javax.swing.border.TitledBorder;
-
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.JList;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import arz.bogglesolver.application.BoggleManager;
-import arz.bogglesolver.domain.BoggleCase;
-
-import java.awt.Color;
+import javax.swing.border.TitledBorder;
 
 public class MainFrame extends JFrame {
 	
@@ -27,6 +18,12 @@ public class MainFrame extends JFrame {
 	
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -863705501147341219L;
+	private JList<String> _list;
+
 	public MainFrame(){
 		
 		
@@ -67,12 +64,10 @@ public class MainFrame extends JFrame {
 		GridBagLayout gbl_grid = new GridBagLayout();
 		grid.setLayout(gbl_grid);
 		
-		for(int i=0;i<BoggleManager.getInstance().getNbLine();i++){
+		for(int i=0;i<MainFrameController.getInstance().getNbLine();i++){
 			
-			for(int j=0;j<BoggleManager.getInstance().getNbCol();j++){
-				
-				
-				BoggleCaseUI cUi = new BoggleCaseUI();
+			for(int j=0;j<MainFrameController.getInstance().getNbCol();j++){
+			
 				
 				GridBagConstraints gbc = new GridBagConstraints();
 				gbc.insets = new Insets(2, 2, 2, 2);
@@ -81,7 +76,7 @@ public class MainFrame extends JFrame {
 				gbc.gridy = j;
 				gbc.weightx = 1.0;
 				gbc.weighty = 1.0;
-				grid.add(cUi, gbc);
+				grid.add(new BoggleCaseUI(i,j), gbc);
 				
 			}
 			
@@ -137,8 +132,8 @@ public class MainFrame extends JFrame {
 		gbc_scrollPane.gridy = 0;
 		resultPanel.add(scrollPane, gbc_scrollPane);
 		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
+		_list = new JList<String>();
+		scrollPane.setViewportView(_list);
 		
 		
 		pack();

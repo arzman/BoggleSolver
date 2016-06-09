@@ -13,6 +13,7 @@ public class BoggleCase {
 	public BoggleCase() {
 
 		_nextCases = new ArrayList<BoggleCase>();
+		
 
 	}
 	

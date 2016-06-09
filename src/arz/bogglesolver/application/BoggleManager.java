@@ -131,10 +131,11 @@ public class BoggleManager {
 		
 		while(!zeStack.isEmpty()){
 			
-			int resword = WordManager.getInstance().analyseWord(convertToString(zeStack.pop()));
+			String st = convertToString(zeStack.pop());
+			int resword = WordManager.getInstance().analyseWord(st);
 			
 			if(resword == WordManager.MOT){
-				
+				System.out.println(st);
 			}
 			
 			
