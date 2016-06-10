@@ -134,9 +134,9 @@ public class MainFrame extends JFrame {
 		
 		_list = new JList<String>();
 		scrollPane.setViewportView(_list);
+
 		
-		
-		pack();
+		setSize(800, 500);
 	}
 
 }

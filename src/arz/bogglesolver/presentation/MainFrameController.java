@@ -26,9 +26,19 @@ public class MainFrameController {
 		return _instance;
 	}
 
-	public void setCharAt(int line, int col, Character c) {
+	public boolean setCharAt(int line, int col, Character c) {
+		
+		boolean res = false;
+		
+		if(Character.getType(c) == Character.LOWERCASE_LETTER){
+			charTable[line][col] = c;
+			res = true;
+		}
+		
 		charTable[line][col] = c;
 		
+		
+		return res;
 	}
 
 	public int getNbLine() {
